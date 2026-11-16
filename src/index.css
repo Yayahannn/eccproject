@@ -1,0 +1,289 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * 数智安防应急指挥中心 · 大屏深色主题
+ * 底色深蓝黑 + 面板半透明 + 蓝色强调 + 四级预警色（红/橙/黄/青）
+ * 组件内禁止硬编码颜色，一律使用下方变量（见 THEME_GUIDE.md）
+ */
+:root {
+  --background: #0e1923;
+  --foreground: #f0f2f5;
+  --card: #16222d;
+  --card-foreground: #f0f2f5;
+  --popover: #16222d;
+  --popover-foreground: #f0f2f5;
+  --primary: #4290f4;
+  --primary-foreground: #f5faff;
+  --secondary: #1a252e;
+  --secondary-foreground: #f0f2f5;
+  --muted: #1a252e;
+  --muted-foreground: #8ba0af;
+  --accent: #1c3141;
+  --accent-foreground: #d0e6fa;
+  --destructive: #e0473d;
+  --destructive-foreground: #fff5f4;
+  --border: rgba(120, 160, 190, 0.22);
+  --input: rgba(120, 160, 190, 0.22);
+  --ring: #4290f4;
+  --radius: 0.5rem;
+  --sidebar-background: #101c26;
+  --sidebar-foreground: #f0f2f5;
+  --sidebar-primary: #4290f4;
+  --sidebar-primary-foreground: #f5faff;
+  --sidebar-accent: #1c3141;
+  --sidebar-accent-foreground: #d0e6fa;
+  --sidebar-border: rgba(120, 160, 190, 0.22);
+  --sidebar-ring: #4290f4;
+  --chart-1: #4290f4;
+  --chart-2: #3bb2a9;
+  --chart-3: #e3ca3f;
+  --chart-4: #e59a3c;
+  --chart-5: #e0473d;
+  --sidebar: #101c26;
+
+  /* —— 大屏专用 token —— */
+  /* 悬浮面板（毛玻璃） */
+  --panel: rgba(14, 26, 36, 0.72);
+  --panel-strong: rgba(10, 20, 28, 0.88);
+  /* 预警等级 I红 / II橙 / III黄 / IV青 */
+  --level-1: #e0473d;
+  --level-2: #e59a3c;
+  --level-3: #d9c33f;
+  --level-4: #3bb2a9;
+  /* 信息蓝（底部图层徽标 / 高亮） */
+  --info: #4290f4;
+  /* 扫描线 / 装饰细线 */
+  --screen-line: rgba(66, 144, 244, 0.35);
+  /* 大屏兜底深色（渐变/遮罩用） */
+  --screen-deep: #031320;
+  /* 左侧菜单选中弧形片色（青色半透明底 + 橙渐变描边，SVG 消费） */
+  --menu-active-fill: #00fff6;
+  --menu-active-line-a: rgb(255 207 165 / 1);
+  --menu-active-line-b: rgb(255 207 165 / 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --sidebar-background: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-heading: var(--font-sans);
+  --font-sans: 'Geist Variable', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* 大屏 token → Tailwind 工具类（bg-panel / text-level-1 …） */
+  --color-panel: var(--panel);
+  --color-panel-strong: var(--panel-strong);
+  --color-level-1: var(--level-1);
+  --color-level-2: var(--level-2);
+  --color-level-3: var(--level-3);
+  --color-level-4: var(--level-4);
+  --color-info: var(--info);
+  --color-screen-line: var(--screen-line);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  /* 大屏页面禁用整页滚动，滚动交给面板内 ScrollArea */
+  html.screen-mode,
+  html.screen-mode body {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  /* 顶栏渐变底色（右透明 → 左深色兜底，盖在地图上保证文字可读） */
+  .bg-topbar-gradient {
+    background: linear-gradient(
+      270deg,
+      color-mix(in srgb, var(--screen-deep) 0%, transparent) 0%,
+      color-mix(in srgb, var(--screen-deep) 80%, transparent) 75.08%
+    );
+  }
+  /* 地图四边暗角遮罩（边缘深色 → 内部透明，参数同顶栏渐变） */
+  .edge-shade-top {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--screen-deep) 80%, transparent) 0%,
+      color-mix(in srgb, var(--screen-deep) 0%, transparent) 100%
+    );
+  }
+  .edge-shade-bottom {
+    background: linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--screen-deep) 80%, transparent) 0%,
+      color-mix(in srgb, var(--screen-deep) 0%, transparent) 100%
+    );
+  }
+  .edge-shade-left {
+    background: linear-gradient(
+      270deg,
+      color-mix(in srgb, var(--screen-deep) 0%, transparent) 0%,
+      color-mix(in srgb, var(--screen-deep) 80%, transparent) 75.08%
+    );
+  }
+  .edge-shade-right {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--screen-deep) 0%, transparent) 0%,
+      color-mix(in srgb, var(--screen-deep) 80%, transparent) 75.08%
+    );
+  }
+  /* 预警条目标题行渐变底（青色中亮两端透明，整体半透明垫在文字下） */
+  .item-title-gradient {
+    background: linear-gradient(
+      90deg,
+      rgb(127 190 188 / 0) 0%,
+      rgb(112 186 186 / 52%) 52.88%,
+      rgb(127 190 190 / 0) 100%
+    );
+    opacity: 0.51;
+  }
+  /* 条目信息点：发光方块（blur 光晕，色值 rgba 精确按设计稿） */
+  .glow-dot {
+    filter: blur(4px);
+  }
+  .glow-dot-red {
+    background: rgb(255 125 125 / 36%);
+  }
+  .glow-dot-orange {
+    background: rgb(255 218 125 / 36%);
+  }
+  .glow-dot-yellow {
+    background: rgb(255 231 125 / 36%);
+  }
+  .glow-dot-cyan {
+    /* IV级青色，设计稿未给出，按同构公式补 */
+    background: rgb(125 231 222 / 36%);
+  }
+  /* 左侧菜单选中项背景（淡蓝渐变，边框 2px currentColor 由组件控制） */
+  .side-active-bg {
+    background: linear-gradient(
+      84deg,
+      rgb(205 234 255 / 0) 0%,
+      rgb(205 234 255 / 30%) 100%
+    );
+  }
+  /* 信息点圆心（小而实的中心点，色同光晕加浓） */
+  .dot-core-red {
+    background: rgb(255 125 125);
+  }
+  .dot-core-orange {
+    background: rgb(255 218 125);
+  }
+  .dot-core-yellow {
+    background: rgb(255 231 125);
+  }
+  .dot-core-cyan {
+    background: rgb(125 231 222);
+  }
+  /* 标题微光 */
+  .text-glow {
+    text-shadow: 0 0 12px color-mix(in srgb, var(--primary) 55%, transparent);
+  }
+  /* 面板青色描边微光 */
+  .panel-glow {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--primary) 14%, transparent),
+      0 0 24px color-mix(in srgb, var(--primary) 10%, transparent) inset;
+  }
+  /* 无人机/风险点呼吸光圈（比 tailwind 自带 ping 更慢更柔） */
+  .animate-ping-soft {
+    animation: ping-soft 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+  @keyframes ping-soft {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.7;
+    }
+    80%,
+    100% {
+      transform: scale(2.1);
+      opacity: 0;
+    }
+  }
+}
